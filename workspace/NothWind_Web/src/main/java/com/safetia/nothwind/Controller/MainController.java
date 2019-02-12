@@ -37,4 +37,13 @@ public class MainController {
 		model.addAttribute("testList",test);
 		return "home";
 	}
+	
+	
+	@RequestMapping(value="test")
+	public String Test() {
+		
+		System.out.println("tset Controller");
+		
+		return "home";
+	}
 }
