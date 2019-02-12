@@ -1,7 +1,6 @@
 package com.safetia.nothwind.Controller;
 
 import java.util.ArrayList;
-import java.util.Properties;
 
 import javax.inject.Inject;
 
@@ -13,17 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.safetia.nothwind.daoImpl.MemberDAO;
 import com.safetia.nothwind.dto.MemberDTO;
-<<<<<<< HEAD
 import com.safetia.nothwind.serviceImpl.MemberService;
-=======
-import com.safetia.nothwind.service.MemberService;
 import com.safetia.nothwind.study.MemberConfiguration;
 import com.safetia.nothwind.study.TestClsee;
->>>>>>> 5199b1b0f1d0513918faa3a890617422fff2abdc
 
 
 @Controller
@@ -44,14 +38,15 @@ public class MainController {
     private TestClsee testClass;
 	
 	@RequestMapping(value="/index")
-<<<<<<< HEAD
+	
 	public String Home(@ModelAttribute("msg") String msg) throws Exception {
 
 		memberService.GetTest();
 		System.out.println("컨트롤러");
 		
 		return "index";
-=======
+	}
+	
 	public String Home(Model model) throws Exception {
 		memberService.GetTest();
 		System.out.println("컨트롤러");
@@ -60,7 +55,6 @@ public class MainController {
 		
 		model.addAttribute("testList",test);
 		return "home";
->>>>>>> 5199b1b0f1d0513918faa3a890617422fff2abdc
 	}
 	
 	

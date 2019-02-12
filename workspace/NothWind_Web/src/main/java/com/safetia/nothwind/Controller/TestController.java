@@ -1,17 +1,32 @@
 package com.safetia.nothwind.Controller;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import javax.annotation.Resource;
+import javax.inject.Inject;
+
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.safetia.nothwind.daoImpl.MemberDAO;
 import com.safetia.nothwind.dto.MemberDTO;
+import com.safetia.nothwind.serviceImpl.MemberService;
+import com.safetia.nothwind.study.MemberConfiguration;
+import com.safetia.nothwind.study.TestClsee;
+
+
+
 
 @Controller
 @RequestMapping("/test")
@@ -30,7 +45,6 @@ public class TestController {
 //	}
 	
 	@RequestMapping("/void")
-<<<<<<< HEAD
 	public void ModelAttribute(@ModelAttribute("msg") String msg) {	
 	}
 	
@@ -49,10 +63,6 @@ public class TestController {
 			attr.addAttribute("msg", "e1");
 		}
 		return redirectPage;
-=======
-	public void ModelAttribute(@ModelAttribute("msg") String msg) {
-		
->>>>>>> 5199b1b0f1d0513918faa3a890617422fff2abdc
 	}
 	
 	
