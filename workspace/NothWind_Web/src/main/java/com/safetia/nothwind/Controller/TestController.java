@@ -45,7 +45,7 @@ public class TestController {
 //	}
 	
 	@RequestMapping("/void")
-	public void ModelAttribute(@ModelAttribute("msg") String msg) {	
+	public void ModelAttribute(@ModelAttribute("msg") String msg) {
 	}
 	
 	
