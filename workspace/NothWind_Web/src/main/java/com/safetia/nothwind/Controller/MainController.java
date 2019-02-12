@@ -60,8 +60,9 @@ public class MainController {
 	
 	@RequestMapping(value="test")
 	public String Test(Model model) {
-		
-		/// 브릿지 테스트 
+
+		/// 브렌치 테스트2
+		/// 브렌치 테스트2 
 		
 		System.out.println(testClass.getTest());
 		ApplicationContext context = new AnnotationConfigApplicationContext(MemberConfiguration.class);
