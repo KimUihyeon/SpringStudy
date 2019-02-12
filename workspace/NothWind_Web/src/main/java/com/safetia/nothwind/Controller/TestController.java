@@ -30,6 +30,7 @@ public class TestController {
 //	}
 	
 	@RequestMapping("/void")
+<<<<<<< HEAD
 	public void ModelAttribute(@ModelAttribute("msg") String msg) {	
 	}
 	
@@ -48,6 +49,10 @@ public class TestController {
 			attr.addAttribute("msg", "e1");
 		}
 		return redirectPage;
+=======
+	public void ModelAttribute(@ModelAttribute("msg") String msg) {
+		
+>>>>>>> 5199b1b0f1d0513918faa3a890617422fff2abdc
 	}
 	
 	

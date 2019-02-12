@@ -1,9 +1,14 @@
 package com.safetia.nothwind.Controller;
 
 import java.util.ArrayList;
+import java.util.Properties;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,7 +17,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.safetia.nothwind.daoImpl.MemberDAO;
 import com.safetia.nothwind.dto.MemberDTO;
+<<<<<<< HEAD
 import com.safetia.nothwind.serviceImpl.MemberService;
+=======
+import com.safetia.nothwind.service.MemberService;
+import com.safetia.nothwind.study.MemberConfiguration;
+import com.safetia.nothwind.study.TestClsee;
+>>>>>>> 5199b1b0f1d0513918faa3a890617422fff2abdc
 
 
 @Controller
@@ -24,13 +35,51 @@ public class MainController {
 
     @Inject
     private MemberService memberService;
+    
+    @Inject
+    @Qualifier("getAdminMember")
+    private MemberDTO member;
+    
+    @Inject
+    private TestClsee testClass;
 	
 	@RequestMapping(value="/index")
+<<<<<<< HEAD
 	public String Home(@ModelAttribute("msg") String msg) throws Exception {
 
 		memberService.GetTest();
 		System.out.println("컨트롤러");
 		
 		return "index";
+=======
+	public String Home(Model model) throws Exception {
+		memberService.GetTest();
+		System.out.println("컨트롤러");
+		
+		ArrayList<MemberDTO> test = dao.ListAll();
+		
+		model.addAttribute("testList",test);
+		return "home";
+>>>>>>> 5199b1b0f1d0513918faa3a890617422fff2abdc
+	}
+	
+	
+	@RequestMapping(value="test")
+	public String Test(Model model) {
+		System.out.println(testClass.getTest());
+		ApplicationContext context = new AnnotationConfigApplicationContext(MemberConfiguration.class);
+		
+		MemberDTO member = context.getBean("getAdminMember",MemberDTO.class); 
+		member.setName("관리자 변경");
+		
+		System.out.println(member.getName());
+		
+		MemberDTO member2 = context.getBean("getAdminMember",MemberDTO.class); // 싱글톤으로 관리됨
+		System.out.println(member2.getName());
+		
+		Resource test = testClass.getTxtFileContext();
+		
+		model.addAttribute("testObj",test);
+		return "home";
 	}
 }
