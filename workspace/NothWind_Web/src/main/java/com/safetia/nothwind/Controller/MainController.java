@@ -6,12 +6,13 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.safetia.nothwind.dao.MemberDAO;
+import com.safetia.nothwind.daoImpl.MemberDAO;
 import com.safetia.nothwind.dto.MemberDTO;
-import com.safetia.nothwind.service.MemberService;
+import com.safetia.nothwind.serviceImpl.MemberService;
 
 
 @Controller
@@ -25,16 +26,11 @@ public class MainController {
     private MemberService memberService;
 	
 	@RequestMapping(value="/index")
-	public String Home(Model model) throws Exception {
+	public String Home(@ModelAttribute("msg") String msg) throws Exception {
 
-		
 		memberService.GetTest();
 		System.out.println("컨트롤러");
 		
-		ArrayList<MemberDTO> test = dao.ListAll();
-		
-		
-		model.addAttribute("testList",test);
-		return "home";
+		return "index";
 	}
 }
