@@ -61,8 +61,7 @@ public class MainController {
 	@RequestMapping(value="test")
 	public String Test(Model model) {
 
-		/// 브렌치 테스트2
-		/// 브렌치 테스트2 
+		/// 마스터 병합 이후 Commit
 		
 		System.out.println(testClass.getTest());
 		ApplicationContext context = new AnnotationConfigApplicationContext(MemberConfiguration.class);
