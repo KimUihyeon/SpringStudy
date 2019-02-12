@@ -12,5 +12,7 @@
 	<c:forEach   var="test" items="${testList}">
 		<div>${test.name}</div>
 	</c:forEach>
+	
+	<div>${testObj}</div>
 </body>
 </html>
