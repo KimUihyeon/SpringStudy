@@ -22,7 +22,7 @@ public class MemberDAO implements iMemberDAO {
 	@Override
 	public ArrayList<MemberDTO> ListAll() throws Exception {
 		// TODO Auto-generated method stub
-		return (ArrayList) sqlSession.selectList("AllList");
+		return null;
 	}
 
 }

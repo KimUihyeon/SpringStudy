@@ -9,7 +9,7 @@
   		<result column="name" property="city"/>
   	</resultMap>
   	<select id="AllList" resultType="memberDTO">
-  		SELECT city as name
-  		FROM Customers
+  		SELECT Prd_title as name
+  		FROM Raum_Product
   	</select>
   </mapper>

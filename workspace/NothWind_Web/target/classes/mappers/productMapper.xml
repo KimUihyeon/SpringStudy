@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.safetia.nothwind.dto.ProductDTO">
+  
+  	<resultMap type="com.safetia.nothwind.dto.ProductDTO" id="productDTO">
+  	</resultMap>
+  
+  	<select id="productListAll" resultType="productDTO">
+  		SELECT 
+  			prd_No as 'No' ,
+  			prd_title as 'title'
+  		FROM Raum_Product
+  		WHERE Prd_no > 5
+  	</select>
+  
+  </mapper>

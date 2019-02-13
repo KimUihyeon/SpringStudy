@@ -9,10 +9,16 @@
 	Hello world!  
 </h1>
 
-	<c:forEach   var="test" items="${testList}">
-		<div>${test.name}</div>
-	</c:forEach>
-	
+	<table>
+		
+		<c:forEach   var="test" items="${testList}">
+			<tr>
+				<td>${test.no}</td>
+				<td>${test.title}</td>
+			</tr>
+		</c:forEach>
+
+	</table>	
 	<div>${testObj}</div>
 </body>
 </html>
