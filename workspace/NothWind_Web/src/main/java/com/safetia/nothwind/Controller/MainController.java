@@ -1,10 +1,11 @@
 package com.safetia.nothwind.Controller;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import javax.inject.Inject;
 
-
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.safetia.nothwind.daoImpl.MemberDAO;
 import com.safetia.nothwind.dto.MemberDTO;
@@ -27,6 +30,7 @@ import com.safetia.nothwind.study.TestClsee;
 @RequestMapping(value="/main")
 public class MainController {
     
+	
     
     @Inject
 	private MemberDAO dao;
@@ -49,6 +53,16 @@ public class MainController {
 		memberService.GetTest();
 		
 		return "index";
+	}
+	
+	
+	@RequestMapping(value="/fileUpload",method=RequestMethod.POST)
+	public void fileUpload(MultipartFile file, Model model) {
+
+		
+		System.out.println("111");
+		System.out.println(file.getOriginalFilename());
+		System.out.println(file.getSize());
 	}
 
 	

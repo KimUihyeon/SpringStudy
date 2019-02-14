@@ -17,6 +17,12 @@
 				<td>${test.title}</td>
 			</tr>
 		</c:forEach>
+		
+		
+		<form action="fileUpload" method="post" id="form1" enctype="multipart/form-data" >
+			<input type="file" name="file">
+			<input type="submit">
+		</form>
 
 	</table>	
 	<div>${testObj}</div>
