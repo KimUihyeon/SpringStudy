@@ -21,9 +21,35 @@ public class ProductDAOImpl implements iProductDAO {
 	@Override
 	public List<ProductDTO> getListAll() {
 		// TODO Auto-generated method stub
-		
-		SqlSession sadas = sqlSession; 
 		return sqlSession.selectList("productListAll");
+	}
+
+
+	@Override
+	public void insert(ProductDTO productDTO) {
+		// TODO Auto-generated method stub
+		sqlSession.insert("productInsert", productDTO);
+	}
+
+
+	@Override
+	public void update(ProductDTO productDTO) {
+		// TODO Auto-generated method stub
+		sqlSession.update("productUpdate",productDTO);
+	}
+
+
+	@Override
+	public ProductDTO detail(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("selectProduct", no);
+	}
+
+
+	@Override
+	public void delete(int no) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

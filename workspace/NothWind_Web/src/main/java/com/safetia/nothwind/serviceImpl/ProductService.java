@@ -20,8 +20,34 @@ public class ProductService implements iProductService {
 	@Override
 	public List<ProductDTO> getListAll() {
 		// TODO Auto-generated method stub
-		ArrayList<ProductDTO> lst =(ArrayList<ProductDTO>) productDAO.getListAll();
-		return lst;
+		return productDAO.getListAll();
 	}
+
+	@Override
+	public void insert(ProductDTO dto) throws Exception {
+		// TODO Auto-generated method stub
+
+		productDAO.insert(dto);
+	}
+
+	@Override
+	public void update(ProductDTO dto) throws Exception {
+		// TODO Auto-generated method stub
+		productDAO.update(dto);
+	}
+
+	@Override
+	public ProductDTO detail(int no) throws Exception {
+		// TODO Auto-generated method stub
+		return productDAO.detail(no);
+	}
+
+	@Override
+	public void delete(int no) throws Exception {
+		// TODO Auto-generated method stub
+		productDAO.delete(no);
+		
+	}
+	
 
 }

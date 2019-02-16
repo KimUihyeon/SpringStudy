@@ -9,11 +9,26 @@
   	</resultMap>
   
   	<select id="productListAll" resultType="productDTO">
-  		SELECT 
-  			prd_No as 'No' ,
-  			prd_title as 'title'
-  		FROM Raum_Product
-  		WHERE Prd_no > 5
+  		SELECT *
+  		FROM study_product
   	</select>
+  	
+  	<select id="selectProduct"  resultType="productDTO">
+  		SELECT * 
+  		FROM study_product
+  		WHERE no = #{no}
+  	</select>
+  	
+  	
+  	<update id="productUpdate" >
+  		UPDATE 
+  			study_product
+  			
+  			SET
+  				 title=#{title} ,
+  				 price=#{price}
+  		where no=${no}
+  		
+  	</update>
   
   </mapper>
