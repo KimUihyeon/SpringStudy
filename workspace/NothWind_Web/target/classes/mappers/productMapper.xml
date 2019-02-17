@@ -30,5 +30,21 @@
   		where no=${no}
   		
   	</update>
+  	
+  	<insert id="productInsert">
+  		INSERT INTO
+  			study_product
+  			(title, price)
+  		VALUES
+  			( #{title}, #{price})
+  	</insert>
+  	
+  	<delete id="removeProduct">
+  	
+  		DELETE FROM 
+  			study_product
+  		WHERE 
+  			no = #{no}
+  	</delete>
   
   </mapper>

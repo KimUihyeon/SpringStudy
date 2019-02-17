@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import org.springframework.web.bind.annotation.RequestMethod;

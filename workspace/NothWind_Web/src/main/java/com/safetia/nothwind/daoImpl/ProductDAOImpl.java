@@ -49,6 +49,7 @@ public class ProductDAOImpl implements iProductDAO {
 	@Override
 	public void delete(int no) {
 		// TODO Auto-generated method stub
+		sqlSession.delete("removeProduct",no);
 		
 	}
 
