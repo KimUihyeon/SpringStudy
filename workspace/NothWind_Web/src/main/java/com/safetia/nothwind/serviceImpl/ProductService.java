@@ -10,17 +10,20 @@ import org.springframework.stereotype.Service;
 import com.safetia.nothwind.daoImpl.ProductDAOImpl;
 import com.safetia.nothwind.dto.ProductDTO;
 import com.safetia.nothwind.service.iProductService;
+import com.safetia.nothwind.util.PageMaker;
 
 @Service
 public class ProductService implements iProductService {
 	
 	@Inject
 	private ProductDAOImpl productDAO; 
+	
 
 	@Override
-	public List<ProductDTO> getListAll() {
+	public List<ProductDTO> getListAll(PageMaker pageMaker) {
 		// TODO Auto-generated method stub
-		return productDAO.getListAll();
+		
+		return productDAO.getListAll(pageMaker);
 	}
 
 	@Override

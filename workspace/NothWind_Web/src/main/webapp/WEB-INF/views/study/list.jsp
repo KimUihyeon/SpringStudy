@@ -38,20 +38,35 @@
 				
 		<nav>
 		  <ul class="pagination">
-		    <li>
-		      <span>
-		        <span>&laquo;</span>
-		      </span>
-		    </li>
-		    <li class="active">
-		      <span>1 <span class="sr-only">(current)</span></span>
-		    </li>
+		  	<c:if test="${paging.prev}">
+			    <li>
+			      <span>
+			        <span>&laquo;</span>
+			      </span>
+			    </li>
+		  	</c:if>
+		  	<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="idx">
+		  		<c:if test="${paging.page == idx}">
+				    <li class="active  listCtrl">
+				      <span>${idx}</span>
+				    </li>
+		  		</c:if>
+		  		
+		  		<c:if test="${paging.page != idx}">
+				    <li class="listCtrl">
+				      <span>${idx}</span>
+				    </li>
+		  		</c:if>
+		  	</c:forEach>
 		    
-		    <li>
-		      <span>
-		        <span>»</span>
-		      </span>
-		    </li>		    
+		  	<c:if test="${paging.next == true}">
+			    <li>
+			      <span>
+		       		<span>»</span>
+			      </span>
+			    </li>
+		  	</c:if>
+		  	
 		  </ul>
 		</nav>
 		
@@ -65,6 +80,19 @@
 	$('#addProduct').on('click',function(){
 		location.href = "../study/register?pageNo=${listPageNo}";
 	});
+	
+	let listMove = function (idx){
+		location.href = "../study/list?pageNo="+idx;
+	}
+	
+	$('.listCtrl').each(function(idx){
+		let _$this = $(this);
+		_$this.on('click',function(){
+			var pageNumber = _$this.find(' > span').text();
+			console.log(_$this.find(' > span'));
+			listMove(pageNumber);
+		});
+	})
 </Script>
 </body>
 </html>

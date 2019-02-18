@@ -1,5 +1,7 @@
 package com.safetia.nothwind.Controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.safetia.nothwind.dto.MemberDTO;
 import com.safetia.nothwind.dto.ProductDTO;
 import com.safetia.nothwind.serviceImpl.ProductService;
+import com.safetia.nothwind.util.PageMaker;
 
 @Controller
 @RequestMapping("/study")
@@ -22,6 +25,8 @@ public class StudyController {
 	@Inject
 	private ProductService productService;
 	
+	@Inject // Paging process Logic
+	private PageMaker pageMaker;
 	
 	/**
 	 * @ 작성자 김의현
@@ -29,9 +34,19 @@ public class StudyController {
 	 * @ description product List Page Call
 	 */
 	@RequestMapping(value="/list", method=RequestMethod.GET )
-	public String list(Model model, int pageNo) {
-		model.addAttribute("products",productService.getListAll());
-		model.addAttribute("listPageNo", pageNo);
+	public String list(Model model,@ModelAttribute("pageNo") int pageNo) {
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setPage(pageNo);
+		
+		List<ProductDTO> products  = productService.getListAll(pageMaker);
+		pageMaker.setTotalCount(130);
+		
+		
+		model.addAttribute("products", products);
+		model.addAttribute("paging", pageMaker);
+		
+		
 		System.out.println(pageNo);
 		return "./study/list";
 	}
@@ -42,10 +57,9 @@ public class StudyController {
 	 * @ description | product Detail View
 	 */
 	@RequestMapping(value="/detail", method = RequestMethod.GET)
-	public String detail(Model model,int pageNo,int no) throws Exception {
+	public String detail(Model model,@ModelAttribute("pageNo") int pageNo,int no) throws Exception {
 		ProductDTO product = productService.detail(no);
 		model.addAttribute("product", product);
-		model.addAttribute("listPageNo", pageNo);
 		
 		return "./study/detail";
 	}

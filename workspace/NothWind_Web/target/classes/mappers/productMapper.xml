@@ -11,6 +11,8 @@
   	<select id="productListAll" resultType="productDTO">
   		SELECT *
   		FROM study_product
+  		ORDER BY no DESC
+  		limit #{startPage} , #{perPageNum}
   	</select>
   	
   	<select id="selectProduct"  resultType="productDTO">

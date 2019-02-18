@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.safetia.nothwind.dao.iProductDAO;
 import com.safetia.nothwind.dto.ProductDTO;
+import com.safetia.nothwind.util.PageMaker;
 
 @Repository
 public class ProductDAOImpl implements iProductDAO {
@@ -19,9 +20,9 @@ public class ProductDAOImpl implements iProductDAO {
 	
 	
 	@Override
-	public List<ProductDTO> getListAll() {
+	public List<ProductDTO> getListAll(PageMaker pagemaker) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("productListAll");
+		return sqlSession.selectList("productListAll",pagemaker);
 	}
 
 

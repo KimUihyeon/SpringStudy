@@ -73,14 +73,12 @@ public class MainController {
 		
 //		ArrayList<MemberDTO> test = dao.ListAll();
 		
-		ArrayList<ProductDTO> products =  (ArrayList<ProductDTO>) productService.getListAll();
 //		
 //		for (ProductDTO productDTO : products) {
 //			productDTO.setTitle(productDTO.getTitle() + "MyBatis Object");
 //		}
 //		
 		
-		model.addAttribute("testList",products);
 		return "home";
 	}
 	
