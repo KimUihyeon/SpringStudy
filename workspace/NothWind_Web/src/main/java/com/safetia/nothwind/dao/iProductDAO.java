@@ -12,5 +12,6 @@ public interface iProductDAO {
 	public void update(ProductDTO productDTO);
 	public ProductDTO detail(int no);
 	public void delete (int no);
+	public int listCountCriteria(PageMaker cri);
 	
 }

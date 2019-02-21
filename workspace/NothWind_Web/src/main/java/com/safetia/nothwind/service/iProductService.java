@@ -12,4 +12,5 @@ public interface iProductService {
 	public void update(ProductDTO dto) throws Exception;
 	public ProductDTO detail(int no) throws Exception;
 	public void delete(int no) throws Exception;
+	public int productCount(PageMaker page)throws Exception;
 }

@@ -22,7 +22,7 @@ public class PageMaker {
 		
 		startPage = (endPage-displayPageNum) +1 ;
 
-		int tempEndPage = (int)(Math.ceil(totalCount)/(double) perPageNum);
+		int tempEndPage = (int)(Math.ceil( (double)totalCount / (double) perPageNum) );
 		
 		if (endPage>tempEndPage) {
 			endPage = tempEndPage;

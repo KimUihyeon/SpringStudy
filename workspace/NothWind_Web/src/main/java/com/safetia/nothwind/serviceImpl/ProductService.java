@@ -51,6 +51,12 @@ public class ProductService implements iProductService {
 		productDAO.delete(no);
 		
 	}
+
+	@Override
+	public int productCount(PageMaker page) throws Exception {
+		// TODO Auto-generated method stub
+		return productDAO.listCountCriteria(page);
+	}
 	
 
 }

@@ -25,11 +25,11 @@
 				<tr>
 					<td>${product.no}</td>
 					<td>
-						<a href="./detail?pageNo=${listPageNo}&no=${product.no}">${product.title}</a>
+						<a href="./detail?pageNo=${pageNo}&no=${product.no}">${product.title}</a>
 					</td>
 					<td>${product.price}.0$</td>
 					<td>
-						<a href="./delete?pageNo=${listPageNo}&no=${product.no}">삭제</a>
+						<a href="./delete?pageNo=${pageNo}&no=${product.no}">삭제</a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -78,7 +78,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <Script>
 	$('#addProduct').on('click',function(){
-		location.href = "../study/register?pageNo=${listPageNo}";
+		location.href = "../study/register?pageNo=${pageNo}";
 	});
 	
 	let listMove = function (idx){

@@ -21,6 +21,11 @@
   		WHERE no = #{no}
   	</select>
   	
+  	<select id="productCount"  resultType="int">
+  		SELECT COUNT(no)
+  		FROM study_product
+  	</select>
+  	
   	
   	<update id="productUpdate" >
   		UPDATE 

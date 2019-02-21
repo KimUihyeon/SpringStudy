@@ -34,13 +34,13 @@ public class StudyController {
 	 * @ description product List Page Call
 	 */
 	@RequestMapping(value="/list", method=RequestMethod.GET )
-	public String list(Model model,@ModelAttribute("pageNo") int pageNo) {
+	public String list(Model model,@ModelAttribute("pageNo") int pageNo) throws Exception {
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setPage(pageNo);
 		
 		List<ProductDTO> products  = productService.getListAll(pageMaker);
-		pageMaker.setTotalCount(130);
+		pageMaker.setTotalCount(productService.productCount(pageMaker));
 		
 		
 		model.addAttribute("products", products);

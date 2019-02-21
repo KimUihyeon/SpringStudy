@@ -54,4 +54,11 @@ public class ProductDAOImpl implements iProductDAO {
 		
 	}
 
+
+	@Override
+	public int listCountCriteria(PageMaker cri) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("productCount",cri);
+	}
+
 }
