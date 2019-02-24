@@ -17,6 +17,10 @@
 	  			<if test="search.keyword != null">
 	  			 	and title like CONCAT('%', #{search.keyword}, '%')
 	  			</if>
+	  			
+	  			<if test="search.productNo != null">
+	  			 	and no like CONCAT('%', #{search.productNo}, '%')
+	  			</if>
   			</if>
   			
   		ORDER BY no DESC

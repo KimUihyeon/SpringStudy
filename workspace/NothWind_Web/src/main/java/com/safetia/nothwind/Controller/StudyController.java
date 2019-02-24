@@ -45,10 +45,10 @@ public class StudyController {
 	 */
 	@RequestMapping(value="/list", method=RequestMethod.GET )
 	public String list(Model model,@ModelAttribute("sreach") SearchCriteria sreach ,@ModelAttribute("pageNo") int pageNo) throws Exception {
-		
-		for (String beanName :dlbf.getBeanDefinitionNames()) {
-			System.out.println(beanName);
-		}
+//		
+//		for (String beanName :dlbf.getBeanDefinitionNames()) {
+//			System.out.println(beanName);
+//		}
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setPage(pageNo);
