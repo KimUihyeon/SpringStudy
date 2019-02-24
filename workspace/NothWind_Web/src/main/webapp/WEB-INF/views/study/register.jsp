@@ -19,7 +19,7 @@
 			</div>
 			<div>
 				<input id="ok" type="submit" value="확인">
-				<input id="goList" type="button" value=취소">
+				<input id="goList" type="button" value="취소">
 			</div>
 			
 		</form>

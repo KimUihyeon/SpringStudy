@@ -11,6 +11,7 @@ import com.safetia.nothwind.daoImpl.ProductDAOImpl;
 import com.safetia.nothwind.dto.ProductDTO;
 import com.safetia.nothwind.service.iProductService;
 import com.safetia.nothwind.util.PageMaker;
+import com.safetia.nothwind.util.SearchCriteria;
 
 @Service
 public class ProductService implements iProductService {
@@ -20,10 +21,10 @@ public class ProductService implements iProductService {
 	
 
 	@Override
-	public List<ProductDTO> getListAll(PageMaker pageMaker) {
+	public List<ProductDTO> getListAll(SearchCriteria search,PageMaker pageMaker) {
 		// TODO Auto-generated method stub
 		
-		return productDAO.getListAll(pageMaker);
+		return productDAO.getListAll(search,pageMaker);
 	}
 
 	@Override
@@ -53,9 +54,9 @@ public class ProductService implements iProductService {
 	}
 
 	@Override
-	public int productCount(PageMaker page) throws Exception {
+	public int productCount(SearchCriteria search,PageMaker page) throws Exception {
 		// TODO Auto-generated method stub
-		return productDAO.listCountCriteria(page);
+		return productDAO.listCountCriteria(search,page);
 	}
 	
 

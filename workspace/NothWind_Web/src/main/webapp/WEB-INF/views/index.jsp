@@ -24,9 +24,6 @@
         </el-col>
     </el-row>
 </div>
-    
-
-
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://unpkg.com/element-ui@1.4/lib/index.js"></script>

@@ -1,7 +1,25 @@
 package com.safetia.nothwind.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 public class MemberDTO {
 	private String title;
+	private String name;
+	private String tel;
+
+	@JsonBackReference
+	private MemberDTO member;
+	
+	public MemberDTO getMember() {
+		return member;
+	}
+
+	public void setMember(MemberDTO member) {
+		this.member = member;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -10,8 +28,6 @@ public class MemberDTO {
 		this.title = title;
 	}
 
-	private String name;
-	private String tel;
 
 	public MemberDTO() {
 

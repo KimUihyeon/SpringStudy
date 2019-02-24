@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.safetia.nothwind.aop.SmapleAdvice;
 import com.safetia.nothwind.dto.MemberDTO;
 import com.safetia.nothwind.dto.ProductDTO;
 import com.safetia.nothwind.serviceImpl.ProductService;
 import com.safetia.nothwind.util.PageMaker;
+import com.safetia.nothwind.util.SearchCriteria;
 
 @Controller
 @RequestMapping("/study")
@@ -28,19 +31,30 @@ public class StudyController {
 	@Inject // Paging process Logic
 	private PageMaker pageMaker;
 	
+	
+	@Inject
+	private SmapleAdvice smapleAdvice;
+
+	@Inject
+	private DefaultListableBeanFactory dlbf;
+	
 	/**
 	 * @ 작성자 김의현
 	 * @ 일시 19.02.17
 	 * @ description product List Page Call
 	 */
 	@RequestMapping(value="/list", method=RequestMethod.GET )
-	public String list(Model model,@ModelAttribute("pageNo") int pageNo) throws Exception {
+	public String list(Model model,@ModelAttribute("sreach") SearchCriteria sreach ,@ModelAttribute("pageNo") int pageNo) throws Exception {
+		
+		for (String beanName :dlbf.getBeanDefinitionNames()) {
+			System.out.println(beanName);
+		}
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setPage(pageNo);
 		
-		List<ProductDTO> products  = productService.getListAll(pageMaker);
-		pageMaker.setTotalCount(productService.productCount(pageMaker));
+		List<ProductDTO> products  = productService.getListAll(sreach,pageMaker);
+		pageMaker.setTotalCount(productService.productCount(sreach,pageMaker));
 		
 		
 		model.addAttribute("products", products);
@@ -134,7 +148,6 @@ public class StudyController {
 	 public String delete(int pageNo,ProductDTO productdto) throws NumberFormatException, Exception {
 
 		 productService.delete(Integer.parseInt(productdto.getNo()));
-		 
 		 return "redirect:../study/list?pageNo="+pageNo;
 	 }
 	 

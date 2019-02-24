@@ -7,9 +7,27 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<style>
+	.input_l{
+		max-width: 120px;
+	}
+	.input_s{
+		max-width: 50px;
+	}
+</style>
 </head>
 <body>
 	<section class="center-block" style="width: 800px">
+		<form action="../study/list" method="get">
+			<input type="hidden" value="1" name="pageNo">
+			<label>상품번호</label>
+			<input class="input_l" name="productNo" value="${sreach.productNo}">
+			<label>상품명</label>
+			<input class="input_l" name="keyword" value="${sreach.keyword}">
+			<label>가격</label>
+			<input class="input_s" name="minPrice" value="${sreach.minPrice}">~<input class="input_s" name="maxPrice" value="${sreach.maxPrice}">
+			<button type="submit">검색</button>
+		</form>
 		<button id="addProduct">상품 추가</button>
 		<table class="table">
 			<thead>
@@ -38,13 +56,11 @@
 				
 		<nav>
 		  <ul class="pagination">
-		  	<c:if test="${paging.prev}">
-			    <li>
-			      <span>
-			        <span>&laquo;</span>
-			      </span>
-			    </li>
-		  	</c:if>
+		    <li>
+		      <span>
+		        <span>&laquo;</span>
+		      </span>
+		    </li>
 		  	<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="idx">
 		  		<c:if test="${paging.page == idx}">
 				    <li class="active  listCtrl">
@@ -58,14 +74,12 @@
 				    </li>
 		  		</c:if>
 		  	</c:forEach>
-		    
-		  	<c:if test="${paging.next == true}">
-			    <li>
-			      <span>
-		       		<span>»</span>
-			      </span>
-			    </li>
-		  	</c:if>
+	    
+		    <li>
+		      <span>
+	       		<span>»</span>
+		      </span>
+		    </li>
 		  	
 		  </ul>
 		</nav>
@@ -82,7 +96,11 @@
 	});
 	
 	let listMove = function (idx){
-		location.href = "../study/list?pageNo="+idx;
+		location.href = "../study/list?pageNo="+idx+
+										"&productNo=${sreach.productNo}"+
+										"&keyword=${sreach.keyword}"+
+										"&minPrice=${sreach.minPrice}"+
+										"&maxPrice=${sreach.maxPrice}";
 	}
 	
 	$('.listCtrl').each(function(idx){

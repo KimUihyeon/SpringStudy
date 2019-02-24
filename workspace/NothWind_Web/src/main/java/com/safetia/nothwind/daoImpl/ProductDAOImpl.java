@@ -1,6 +1,8 @@
 package com.safetia.nothwind.daoImpl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.safetia.nothwind.dao.iProductDAO;
 import com.safetia.nothwind.dto.ProductDTO;
 import com.safetia.nothwind.util.PageMaker;
+import com.safetia.nothwind.util.SearchCriteria;
 
 @Repository
 public class ProductDAOImpl implements iProductDAO {
@@ -20,9 +23,12 @@ public class ProductDAOImpl implements iProductDAO {
 	
 	
 	@Override
-	public List<ProductDTO> getListAll(PageMaker pagemaker) {
+	public List<ProductDTO> getListAll(SearchCriteria search,PageMaker pagemaker) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("productListAll",pagemaker);
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("search", search);
+		map.put("cri", pagemaker);
+		return sqlSession.selectList("productListAll", map);
 	}
 
 
@@ -56,9 +62,12 @@ public class ProductDAOImpl implements iProductDAO {
 
 
 	@Override
-	public int listCountCriteria(PageMaker cri) {
+	public int listCountCriteria(SearchCriteria search,PageMaker cri) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("productCount",cri);
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("search", search);
+		map.put("cri", cri);
+		return sqlSession.selectOne("productCount",map);
 	}
 
 }

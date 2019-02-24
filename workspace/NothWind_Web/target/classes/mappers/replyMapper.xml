@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.safetia.nothwind.dto.ReplyDTO">
+  
+  	<resultMap type="com.safetia.nothwind.dto.ReplyDTO" id="replyDTO"></resultMap>
+  	
+  	<insert id="replyInsert">
+  		INSERT INTO 
+  			study_reply (bno, replytext, replyer)
+  		VALUES ( #{bno}, #{replytext}, #{replyer} )
+  	</insert>
+  	
+  	<select id="replyList" resultMap="replyDTO">
+  		SELECT *
+  		FROM study_reply
+  		WHERE  bno = #{bno}
+  	</select>
+  	
+  	<update id="replyUpdate">
+  		UPDATE FROM
+  			study_reply
+  		SET
+  			replytext = #{replytext}
+  		WHERE
+  			bno = #{bno}			
+  	</update>
+  	
+  	<delete id="replyDelete">
+  		DELETE FROM
+  			study_reply
+  		WHERE
+  			bno= #{bno}
+  	</delete>
+  
+  </mapper>

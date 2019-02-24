@@ -31,6 +31,7 @@ import com.safetia.nothwind.study.TestClsee;
 @RequestMapping("/test")
 public class TestController {
 	
+	
 	@RequestMapping("/string")
 	public String StringReturn() {
 		// String 으로 반환하면 root/String 으로 감
@@ -67,17 +68,25 @@ public class TestController {
 	
 
 	@RequestMapping(value="/jackson")
-	public @ResponseBody ArrayList<MemberDTO> test() {
+	public @ResponseBody MemberDTO test() {
+		MemberDTO dto0 = new MemberDTO();
+		MemberDTO dto1 = new MemberDTO();
+		MemberDTO dto2 = new MemberDTO();
 		
-		ArrayList<MemberDTO> dtos = new ArrayList<MemberDTO>();
+		dto0.setMember(dto1);
+		dto1.setMember(dto0);
 		
-		for(int i=0 ; i<10; i++) {
-			String name = "이름" + i ;
-			String tel = "전번" + i;
-			dtos.add(new MemberDTO(name,tel));
-		}
+		
+//		
+//		ArrayList<MemberDTO> dtos = new ArrayList<MemberDTO>();
+//		
+//		for(int i=0 ; i<10; i++) {
+//			String name = "이름" + i ;
+//			String tel = "전번" + i;
+//			dtos.add(new MemberDTO(name,tel));
+//		}
 
-		return dtos;
+		return dto0;
 	}
 	@RequestMapping("/jacksonSimple")
 	public @ResponseBody MemberDTO test2() {

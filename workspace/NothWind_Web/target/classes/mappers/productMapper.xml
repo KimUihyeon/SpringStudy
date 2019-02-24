@@ -11,8 +11,16 @@
   	<select id="productListAll" resultType="productDTO">
   		SELECT *
   		FROM study_product
+  		WHERE no> 0 
+  		
+  			<if test="search!= null">
+	  			<if test="search.keyword != null">
+	  			 	and title like CONCAT('%', #{search.keyword}, '%')
+	  			</if>
+  			</if>
+  			
   		ORDER BY no DESC
-  		limit #{startPage} , #{perPageNum}
+  		limit #{cri.startPage} , #{cri.perPageNum}
   	</select>
   	
   	<select id="selectProduct"  resultType="productDTO">
@@ -24,6 +32,12 @@
   	<select id="productCount"  resultType="int">
   		SELECT COUNT(no)
   		FROM study_product
+  		where no > 0
+  			<if test="search!= null">
+	  			<if test="search.keyword != null">
+	  			 	and title like CONCAT('%', #{search.keyword}, '%')
+	  			</if>
+  			</if>
   	</select>
   	
   	
@@ -53,5 +67,6 @@
   		WHERE 
   			no = #{no}
   	</delete>
+  	
   
   </mapper>
