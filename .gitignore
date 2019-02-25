@@ -1,4 +1,5 @@
 workspace/.metadata/
 workspace/Servers/
 workspace/.recommenders/
+workspace/aopTest/
 *.class
