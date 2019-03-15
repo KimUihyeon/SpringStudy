@@ -12,8 +12,12 @@ import org.springframework.util.FileCopyUtils;
 public class FileManager {
 	
 	public String upload(String uploadPath, String originalName, byte[] fileDate) {
+		if(fileDate.length==0) {
+			return  "err"; 
+		}
 		
 		try {
+			
 			UUID uid = UUID.randomUUID();
 			
 			String saveFileName = uid.toString() + "_" + originalName;
@@ -23,7 +27,7 @@ public class FileManager {
 				File target = new File(path, saveFileName);
 				//파일을 저장
 				FileCopyUtils.copy(fileDate, target);
-				return target.getPath();
+				return saveFileName;
 			}
 			
 		}catch(Exception e) {
@@ -46,7 +50,7 @@ public class FileManager {
 		
 		if(!file.exists()) {
 			try {
-				file.mkdir();
+				file.mkdirs();
 			}
 			catch (Exception e) {
 				return null;

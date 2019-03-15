@@ -6,6 +6,16 @@ public class DirectoryDTO {
 	private String description;
 	private String color;
 	private String icon;
+	private String userId;
+	private MemberDTO memberDTO;
+	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
 	
 	
 	public int getId() {
@@ -43,7 +53,7 @@ public class DirectoryDTO {
 	@Override
 	public String toString() {
 
-		return getId() + "||" + getTitle() + "||" + getDescription() + "||" + getIcon() + "||" + getColor();
+		return getId() + "||" + getTitle() + "||" + getDescription() + "||" + getIcon() + "||" + getColor() +"||"+ getUserId();
 	}
 	
 }

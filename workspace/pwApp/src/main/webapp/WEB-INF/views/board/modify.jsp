@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,15 +20,15 @@
                     <div>
                         <form id="formTag" action="/test.html" method="POST" >
                             <div>
-                                <img class="group-icon">
+                                <img class="group-icon" id="iconImg">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default dropdown-toggle colorSet" id="groupBox" data-toggle="dropdown" aria-expanded="false" name='group'>
                                     </button>
                                 <input type="hidden" id="groupId" name="groupId" >
                                 <ul class="dropdown-menu" role="menu" >
-                                    <li data-key='1' data-color="#f00fff">1</li>
-                                    <li data-key='1' data-color="#ff00ff">2</li>
-                                    <li data-key='1' data-color="#ff0f0f">3</li>
+                                	<c:forEach var="directory" items="${directories}">
+                                    	<li data-key='${directory.id}' data-color="${directory.color}" data-img="${directory.icon}">${directory.title}</li>
+                                	</c:forEach>
                                 </ul>
                                 </div>
                             </div>
@@ -75,15 +76,16 @@
                 let _val = _$this.html();
                 let _key = _$this.attr('data-key');
                 let _color = _$this.attr('data-color');
+                let _imgpath = "../" + _$this.attr('data-img');
                 let _context = _val +"<span class='caret></span>";
 
                 $('#groupId').val(_key);
                 $('#groupBox').html(_context);
+                $('#iconImg').attr('src',_imgpath)
                 setColor(_color);
             });
 
             $('#submit').on('click',function(e){
-
                 let obj = {
                     group : $('#groupId').val(),
                     description : $('#description').val(),

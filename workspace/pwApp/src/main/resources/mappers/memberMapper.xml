@@ -10,7 +10,7 @@
   	<select id="AllList" resultType="memberDTO">
   		SELECT 
   			email as id
-  			pw
+  			pw as pw
   		FROM Member
   		where email = 'id'
   	</select>

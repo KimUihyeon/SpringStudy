@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,14 +16,19 @@
 
         <section>
             <ul class="list-group content-list-box">
-                <li class="list-group-item">
+            	
+            	<c:forEach var="directory" items="${directories}">
+            	
+                <li class="list-group-item" style="border-color: ${directory.color}">
                     <div>
                         <div>
-                            <img class="group-icon">
-                            <strong>GroupName</strong>
+                            <img class="group-icon" src="../${directory.icon}">
+                            <strong>${directory.title}</strong>
                         </div>
                     </div>
                 </li>
+            	
+            	</c:forEach>
             </ul>
         </section>
 

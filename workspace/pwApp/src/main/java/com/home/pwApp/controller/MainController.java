@@ -1,14 +1,17 @@
 package com.home.pwApp.controller;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.home.pwApp.service.AccountService;
+import com.home.pwApp.service.DirectoryService;
 
 @Controller
 @RequestMapping("/main")
@@ -19,6 +22,12 @@ public class MainController {
 
 	@Inject
 	private AccountService accountService;
+
+	@Inject
+	private DirectoryService directoryService;
+
+	@Resource(name="devUserId")
+	private String userId;
 	
 	
 	/**
@@ -27,8 +36,8 @@ public class MainController {
 	 * 게시판 리스트로 보기 페이지 컨트롤러 
 	 */
 	@RequestMapping(value= {"/list",""}, method=RequestMethod.GET)
-	public String list() {
-		accountService.Account(null);
+	public String list(Model model) {
+		
 		
 		return "/board/list";
 	}
@@ -39,7 +48,9 @@ public class MainController {
 	 * 게시판 수정하기 페이지 컨트롤
 	 */
 	@RequestMapping(value="/modfiy", method=RequestMethod.GET)
-	public String modify() {
+	public String modify(Model model) {
+
+		model.addAttribute("directories",directoryService.directoriesbyUserId(userId));
 		return "/board/modify";
 	}
 
@@ -51,6 +62,8 @@ public class MainController {
 	 */
 	@RequestMapping(value="/modfiy", method=RequestMethod.POST)
 	public String modify(String a) {
+		
+		
 		return null;
 	}
 
@@ -61,7 +74,10 @@ public class MainController {
 	 * 게시판 데이터 페이지 컨트롤러 
 	 */
 	@RequestMapping(value="/insert", method=RequestMethod.GET)
-	public String insert() {
+	public String insert(Model model) {
+		
+
+		model.addAttribute("directories",directoryService.directoriesbyUserId(userId));
 		return "/board/modify";
 	}
 
