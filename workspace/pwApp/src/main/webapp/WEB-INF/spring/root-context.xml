@@ -30,4 +30,8 @@
         <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
     </bean>
     
+    <bean id="devUserId" class="java.lang.String">
+    	<constructor-arg value="admin"></constructor-arg>
+    </bean>
+    
 </beans>

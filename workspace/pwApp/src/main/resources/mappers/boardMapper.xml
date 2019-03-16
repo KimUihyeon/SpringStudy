@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.home.pwApp.dao.BoardDAO">
+  
+  	<resultMap type="com.home.pwApp.dto.DirectoryDTO" id="directoryDTO">
+  		<result column="title2" property="title"/>
+  		<result column="description2" property="description"/>
+  	</resultMap>
+  
+  	<resultMap type="com.home.pwApp.dto.BoardDTO" id="boardDTO">
+  		<id column="id" property="id"/>
+  		<collection property="directoryDTO" resultMap="directoryDTO">
+  		</collection>
+  	</resultMap>
+  	
+  	<insert id="boradAdd" >
+		INSERT INTO 
+			app_board
+			(title, context, contextId, contextPw, etc, groupId)
+		VALUES (#{title}, #{context}, #{contextId}, #{contextPw}, #{etc}, #{groupId});
+  	</insert>
+  	
+  	<select id="boardListByUserId" resultType="boardDTO">
+  		SELECT 
+  			b.id as `id`,
+  			context,
+  			contextId, 
+  			contextPw, 
+  			etc, 
+  			groupId,
+  			g.title as `title2`,
+  			g.description as `description2`
+  		FROM 
+  			app_board as b
+  		INNER JOIN 
+  			app_directory as g
+  		ON 
+  			b.groupId = g.id
+  		WHERE
+  			g.userId = #{userId}
+  	</select>
+  	
+  	
+  </mapper>

@@ -13,7 +13,7 @@ import com.home.pwApp.service.AccountService;
 
 
 @Controller
-@RequestMapping("/")
+@RequestMapping(value= {"/account",""})
 public class AccountController {
 
 	private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
@@ -23,7 +23,7 @@ public class AccountController {
 	
 	@RequestMapping(value={"/index" , "/", "/login"} , method=RequestMethod.GET)
 	public String Home() {
-		logger.info("tesrt");
+		
 		return "login";
 	}
 	
@@ -38,5 +38,12 @@ public class AccountController {
 		else { 
 			return "redirect:/login";
 		}
+	}
+	
+
+	@RequestMapping(value={"/logout"} , method=RequestMethod.GET)
+	public void logout() {
+		logger.info("logout logic");
+		
 	}
 }

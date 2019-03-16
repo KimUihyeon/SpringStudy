@@ -9,53 +9,23 @@
     <title>Document</title>
 </head>
 <body>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link rel="stylesheet" href="../resources/Asset/Css/bootstrap-colorpicker.css">
-    <link rel="stylesheet" href="../resources/Asset/Css/bootstrap-colorpicker.min.css">
-    <link rel="stylesheet" href="../resources/Asset/Css/common.css">
-    <style>
-    </style>
+
+	<%@ include file="/WEB-INF/views/common/header.jsp" %>
     <div id="wrap">
-        <div class="pos-f-t menu">
-            <div class="collapse" id="navbarToggleExternalContent">
-                <div class="bg-dark p-4">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <a class="a-box" href="#">리스트로 보기</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a class="a-box" href="#">그룹별로 보기</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a class="a-box" href="#">추가</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a class="a-box" href="#">관리</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a class="a-box" href="#">로그아웃</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <nav class="navbar navbar-dark bg-dark">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </nav>
-        </div>
+		<%@ include file="/WEB-INF/views/common/menu.jsp" %>
+
 
         <section class="">
             <ul class="list-group content-list-box">
                 <li class="list-group-item">
                     <div>
-                        <form id="formTag" action="/test.html" method="POST" >
+                        <form id="formTag" action="../directory/insert" method="POST" enctype="multipart/form-data" >
                             <div>
                                 <img class="group-icon">
                                 <div class="btn-group">
                                     <div class="colorpickerBox">
                                         <div class="colorResult colorSet"></div>
-                                        <input type="text" class="form-control colorPicker" name="bgColor">
+                                        <input type="text" class="form-control colorPicker" id="colorInput" name="color">
                                     </div>
                                     <input type="text" class="form-control" placeholder="title" id="title" name='title' aria-describedby="basic-addon2">
                                 </div>
@@ -70,8 +40,8 @@
                                     <span class="input-group-addon" id="basic-addon2">첨부파일</span>
                                 </div>
                                 <div class="content-item">
-                                    <input type="submit"  class="btn btn-default" value="저장" id="submit" />
-                                    <input type="file" id="file" >
+                                    <input type="button"  class="btn btn-default" value="저장" id="submitbtn" />
+                                    <input type="file" id="file" name="file" >
                                 </div>
                             </div>
                         </form>
@@ -81,18 +51,14 @@
         </section>
     </div>
     
-    <script src="../resources/Asset/Js/common/common.js"></script>
-    <script src="../resources/Asset/Js/lib/Jquery3.3.1min.js" ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    <script src="../resources/Asset/Js/lib/bootstrap-colorpicker.js"></script>
-    <script src="../resources/Asset/Js/lib/bootstrap-colorpicker.min.js"></script>
+	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
     <script>
         $(function(){
             let $colorPicker = $('.colorPicker');
             let $colorFakeControl = $('.colorResult');
             let $fileAddButton = $('#basic-addon2');
-
+            var _$form= $('#formTag');
+            
             $colorPicker.colorpicker({
                 format: "hex" 
             })
@@ -128,21 +94,20 @@
             }
 
 
-            $('#submit').on('click',function(e){
-
+            $("#submitbtn").on('click',function(e){
                 let obj = {
-                    group : $('#groupId').val(),
+                    color : $('#colorInput').val(),
                     description : $('#description').val(),
-                    id : $('#id').val(),
-                    pw : $('#pw').val(),
-                    etc : $('#etc').val()
+                    title : $('#title').val(),
+                    description : $('#description').val(),
+                    file : $('#file').val()
                 }
-                $('#formTag').submit();
-                if(isValid(obj)== true){
-                    let _$formJEL= $('#formTag');
+                // Validation 필요
+                
+                _$form.submit();
+                /* if(isValid(obj)== true){
                     console.log( _$formJEL);
-                    _$formJEL.submit();
-                }
+                } */
             });
 
         })
