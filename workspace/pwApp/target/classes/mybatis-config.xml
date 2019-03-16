@@ -7,6 +7,7 @@
         <typeAliases>
 	        <typeAlias type="com.home.pwApp.dto.MemberDTO" alias="memberDTO"/>
 	        <typeAlias type="com.home.pwApp.dto.DirectoryDTO" alias="directoryDTO"/>
+	        <typeAlias type="com.home.pwApp.dto.BoardDTO" alias="boardDTO"/>
         </typeAliases>
         
     </configuration>

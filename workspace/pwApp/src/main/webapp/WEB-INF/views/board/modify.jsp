@@ -18,7 +18,7 @@
             <ul class="list-group content-list-box">
                 <li class="list-group-item">
                     <div>
-                        <form id="formTag" action="/test.html" method="POST" >
+                        <form id="formTag" action="../main/insert" method="POST" >
                             <div>
                                 <img class="group-icon" id="iconImg">
                                 <div class="btn-group">
@@ -34,20 +34,20 @@
                             </div>
                             <hr>
                             <div style="margin-left: 60px">
-                                <textarea type="text" class="form-control" placeholder="description" name='description' id='description' aria-describedby="basic-addon2"></textarea>
+                                <textarea type="text" class="form-control" placeholder="description" name='context' id='description' aria-describedby="basic-addon2"></textarea>
                             </div>
                             <div class="content-box">
                                 <div class="content-item">
-                                    <input type="text" class="form-control" placeholder="id" id="id" name='id' aria-describedby="basic-addon2">
+                                    <input type="text" class="form-control" placeholder="id" id="id" name='contextId' aria-describedby="basic-addon2">
                                 </div>
                                 <div class="content-item">
-                                    <input type="text" class="form-control" placeholder="pw" id="pw" name='pw' aria-describedby="basic-addon2">
+                                    <input type="text" class="form-control" placeholder="pw" id="pw" name='contextPw' aria-describedby="basic-addon2">
                                 </div>
                                 <div class="content-item">
                                     <input type="text" class="form-control" placeholder="etc" id="etc" name='etc' aria-describedby="basic-addon2">
                                 </div>
                                 <div class="content-item">
-                                    <input type="submit"  class="btn btn-default" value="저장" id="submit" />
+                                    <input type="button"  class="btn btn-default" value="저장" id="submitbtn" />
                                 </div>
                             </div>
                         </form>
@@ -85,19 +85,19 @@
                 setColor(_color);
             });
 
-            $('#submit').on('click',function(e){
+            $('#submitbtn').on('click',function(e){
                 let obj = {
-                    group : $('#groupId').val(),
+                    groupId : Number($('#groupId').val()),
                     description : $('#description').val(),
                     id : $('#id').val(),
                     pw : $('#pw').val(),
                     etc : $('#etc').val()
                 }
-                $('#formTag').submit();
+                console.log(obj);
+                
                 if(isValid(obj)== true){
-                    let _$formJEL= $('#formTag');
-                    console.log( _$formJEL);
-                    _$formJEL.submit();
+                    let _$form= $('#formTag');
+                    _$form.submit();
                 }
             });
 

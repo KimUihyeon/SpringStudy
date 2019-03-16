@@ -1,5 +1,7 @@
 package com.home.pwApp.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 
@@ -10,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.home.pwApp.dto.BoardDTO;
 import com.home.pwApp.service.AccountService;
+import com.home.pwApp.service.BoardService;
 import com.home.pwApp.service.DirectoryService;
 
 @Controller
@@ -25,6 +29,9 @@ public class MainController {
 
 	@Inject
 	private DirectoryService directoryService;
+	
+	@Inject
+	private BoardService boardService;
 
 	@Resource(name="devUserId")
 	private String userId;
@@ -37,8 +44,12 @@ public class MainController {
 	 */
 	@RequestMapping(value= {"/list",""}, method=RequestMethod.GET)
 	public String list(Model model) {
+		List<BoardDTO> dtd= boardService.listByUserId(userId);
 		
-		
+		for (BoardDTO boardDTO : dtd) {
+			System.out.println(boardDTO.getDirectoryDTO().getTitle());
+		}
+		model.addAttribute("boards", boardService.listByUserId(userId));
 		return "/board/list";
 	}
 	
@@ -87,7 +98,10 @@ public class MainController {
 	 * 게시판 데이터 추가하기 처리 로직 
 	 */
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
-	public String insert(String a) {
+	public String insert(BoardDTO dto) {
+		
+		logger.info(dto.toString());
+		boardService.add(dto);
 		return null;
 	}
 
