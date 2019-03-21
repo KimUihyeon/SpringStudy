@@ -9,22 +9,22 @@
     <title>Document</title>
 </head>
 <body>
-
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
     <div id="wrap">
 		<%@ include file="/WEB-INF/views/common/menu.jsp" %>
 
-        <section class="loginBox">
+        <section>
             <ul class="list-group content-list-box">
                 <li class="list-group-item">
                     <div>
+                    	<input type="hidden" id="boardId" value="${board.id}" >
                         <div>
-                            <img class="group-icon">
-                            <strong>GroupName</strong>
+                            <img class="group-icon" href="../${board.icon}">
+                            <strong>${board.title}</strong>
                         </div>
                         <hr>
                         <div style="margin-left: 60px">
-                            <i>Description</i>
+                            <i>${board.description}</i>
                         </div>
                         <div class="content-box">
                             <div class="content-item">
@@ -49,11 +49,28 @@
             $('.content-item').each(function(index){
                 let _idx = index;
                 $(this).find('button').on('click',function(){
+                	
                     let _$button = $(this);
                     let _buttonId = $(this).attr('id');
                     let _IsDataChange = $(this).attr('data-changed');
+                    
                     if(_IsDataChange == 'false'){
-                        _$button.html(getData());
+                    	var ajaxData = getBoardInfo();
+                    	var data = "";
+                		console.log(ajaxData);
+                    	
+                    	if(_buttonId== 'id'){
+                    		data = ajaxData.contextId;
+                    	}
+                    	else if(_buttonId== 'pw'){
+                    		data = ajaxData.contextPw;
+                    	}
+                    	else {
+                    		data = ajaxData.etc;
+                    	}
+                    	data =  securityDataTagFactory(data);
+                    	
+                        _$button.html(data);
                         _$button.attr('data-changed','ture'); 
                         _$button.removeClass('btn-primary');
                         _$button.css({'background':'white'
@@ -76,16 +93,36 @@
                 return tag;
             }
 
-            function getSecurityDataService(){
-                console.log('Service Call');
-                let data = 'data123';
-                
-                return data;
-            }
             function getData(){
-                let data = getSecurityDataService(); // ('애러처리 필요');
+                let data = getBoardInfo(); // ('애러처리 필요');
                 let dataWrappingHtml = securityDataTagFactory(data);
                 return dataWrappingHtml;
+            }
+
+            
+            function getBoardInfo(){
+            	let data = { 'id' : parseInt($('#boardId').val())};
+            	let url = '../main/selectOne';            	
+            	let ajaxData = ajaxPostCall(data,url);
+            	return ajaxData; 
+            }
+            
+            function ajaxPostCall(data , url){
+            	var ajaxReturnData = {};
+            	$.ajax({
+            		method: 'POST',
+            		url : url,
+            		data : data,
+                    async   : false,
+                    success:function(data){
+                    	ajaxReturnData = data;
+                    },
+                    error: function (error) {
+                    	ajaxReturnData  = error;
+                    }
+                    
+            	});
+            	return ajaxReturnData;
             }
         });
     </script>

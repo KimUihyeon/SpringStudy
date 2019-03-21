@@ -65,7 +65,7 @@ public class BoardDTO {
 	@Override
 	public String toString() {
 
-		return getTitle() +"||"+ getContext() +"||"+ getId();
+		return getId() +"||"+ getTitle() +"||"+ getContext() +"||"+ getId();
 	}
 	
 }

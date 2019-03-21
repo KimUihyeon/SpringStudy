@@ -1,6 +1,8 @@
 package com.home.pwApp.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -11,8 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.home.pwApp.dto.BoardDTO;
+import com.home.pwApp.dto.MemberDTO;
 import com.home.pwApp.service.AccountService;
 import com.home.pwApp.service.BoardService;
 import com.home.pwApp.service.DirectoryService;
@@ -21,7 +25,6 @@ import com.home.pwApp.service.DirectoryService;
 @RequestMapping("/main")
 public class MainController {
 	
-
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
 	@Inject
@@ -46,9 +49,6 @@ public class MainController {
 	public String list(Model model) {
 		List<BoardDTO> dtd= boardService.listByUserId(userId);
 		
-		for (BoardDTO boardDTO : dtd) {
-			System.out.println(boardDTO.getDirectoryDTO().getTitle());
-		}
 		model.addAttribute("boards", boardService.listByUserId(userId));
 		return "/board/list";
 	}
@@ -86,8 +86,6 @@ public class MainController {
 	 */
 	@RequestMapping(value="/insert", method=RequestMethod.GET)
 	public String insert(Model model) {
-		
-
 		model.addAttribute("directories",directoryService.directoriesbyUserId(userId));
 		return "/board/modify";
 	}
@@ -102,7 +100,7 @@ public class MainController {
 		
 		logger.info(dto.toString());
 		boardService.add(dto);
-		return null;
+		return "redirect:/main/list";
 	}
 
 	/**
@@ -111,7 +109,8 @@ public class MainController {
 	 * 게시판 자세히보기 페이지 컨트롤러 
 	 */
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
-	public String detail() {
+	public String detail(Model model, BoardDTO dto) {
+		model.addAttribute("board",boardService.selectBoard(userId, dto.getId()));
 		return "/board/detail";
 	}
 
@@ -123,6 +122,13 @@ public class MainController {
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
 	public String delete() {
 		return "";
+	}
+	
+
+	@RequestMapping(value="/selectOne", method=RequestMethod.POST)
+	public @ResponseBody Map<String, Object> selectOne(String id) {
+		Map<String, Object>  asdasd =  boardService.selectBoard(userId, Integer.parseInt(id));
+		return asdasd;
 	}
 	
 }
