@@ -6,6 +6,7 @@ import java.util.Map;
 import com.home.pwApp.dto.BoardDTO;
 
 public interface BoardService {
+	public BoardDTO selectOne(int id);
 	public void add(BoardDTO dto);
 	public void modify(BoardDTO dto);
 	public void delete(BoardDTO dto);
