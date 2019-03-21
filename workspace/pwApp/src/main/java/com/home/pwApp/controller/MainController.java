@@ -44,11 +44,6 @@ public class MainController {
 	 */
 	@RequestMapping(value= {"/list",""}, method=RequestMethod.GET)
 	public String list(Model model) {
-		List<BoardDTO> dtd= boardService.listByUserId(userId);
-		
-		for (BoardDTO boardDTO : dtd) {
-			System.out.println(boardDTO.getDirectoryDTO().getTitle());
-		}
 		model.addAttribute("boards", boardService.listByUserId(userId));
 		return "/board/list";
 	}
@@ -111,7 +106,8 @@ public class MainController {
 	 * 게시판 자세히보기 페이지 컨트롤러 
 	 */
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
-	public String detail() {
+	public String detail(Model model, int id) {
+		model.addAttribute("board", boardService.selectOne(id));
 		return "/board/detail";
 	}
 

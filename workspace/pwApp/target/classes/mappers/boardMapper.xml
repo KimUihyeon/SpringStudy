@@ -44,4 +44,19 @@
   	</select>
   	
   	
+  	<select id="boardSelectOne" resultType="boardDTO">
+  		SELECT 
+  			id,
+  			context,
+  			contextId,
+  			contextPw,
+  			etc,
+  			groupId
+  		FROM 
+  			app_board
+  		WHERE
+  			id = #{id}
+  	</select>
+  	
+  	
   </mapper>

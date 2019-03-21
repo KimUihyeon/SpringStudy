@@ -19,12 +19,12 @@
                 <li class="list-group-item">
                     <div>
                         <div>
-                            <img class="group-icon">
-                            <strong>GroupName</strong>
+                            <img class="group-icon" src="../${board}">
+                            <strong>${board}</strong>
                         </div>
                         <hr>
                         <div style="margin-left: 60px">
-                            <i>Description</i>
+                            <i>${board.context}</i>
                         </div>
                         <div class="content-box">
                             <div class="content-item">

@@ -20,16 +20,18 @@
             <ul class="list-group content-list-box">
             	<c:forEach var="board" items="${boards}">
 	                <li class="list-group-item">
-	                    <div>
-	                        <div>${board.context}
-	                            <img class="group-icon">
-	                            <strong>${board.directoryDTO.title}</strong>
-	                        </div>
-	                        <hr>
-	                        <div style="margin-left: 60px">
-	                            <i>${board.directoryDTO.description}</i>
-	                        </div>
-	                    </div>
+	               		<a href="../main/detail?id=${board.id}">
+		                    <div>
+		                        <div>${board.context}
+		                            <img class="group-icon">
+		                            <strong>${board.directoryDTO.title}</strong>
+		                        </div>
+		                        <hr>
+		                        <div style="margin-left: 60px">
+		                            <i>${board.directoryDTO.description}</i>
+		                        </div>
+		                    </div>
+	               		</a>
 	                </li>
             	</c:forEach>
             </ul>

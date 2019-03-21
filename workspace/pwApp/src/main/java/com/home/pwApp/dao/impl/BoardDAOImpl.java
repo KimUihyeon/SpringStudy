@@ -54,4 +54,10 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectList("listGroupByDirectory",map);
 	}
 
+	@Override
+	public BoardDTO selectOne(int id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("boardSelectOne", id);
+	}
+
 }
