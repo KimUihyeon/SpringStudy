@@ -19,7 +19,7 @@
                     <div>
                     	<input type="hidden" id="boardId" value="${board.id}" >
                         <div>
-                            <img class="group-icon" href="../${board.icon}">
+                            <img class="group-icon" src="../${board.icon}">
                             <strong>${board.title}</strong>
                         </div>
                         <hr>

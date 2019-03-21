@@ -53,4 +53,10 @@ public class BoardServiceImpl implements BoardService{
 		return  dao.selectBoard(userId,boardId);
 	}
 
+	@Override
+	public BoardDTO selectOne(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

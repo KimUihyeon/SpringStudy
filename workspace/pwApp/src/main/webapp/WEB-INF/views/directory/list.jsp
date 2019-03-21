@@ -19,14 +19,16 @@
             	
             	<c:forEach var="directory" items="${directories}">
             	
-                <li class="list-group-item" style="border-color: ${directory.color}">
-                    <div>
-                        <div>
-                            <img class="group-icon" src="../${directory.icon}">
-                            <strong>${directory.title}</strong>
-                        </div>
-                    </div>
-                </li>
+            	<a href="../main/list?type=${directory.id}">
+	                <li class="list-group-item" style="border-color: ${directory.color}">
+	                    <div>
+	                        <div>
+	                            <img class="group-icon" src="../${directory.icon}">
+	                            <strong>${directory.title}</strong>
+	                        </div>
+	                    </div>
+	                </li>
+            	</a>
             	
             	</c:forEach>
             </ul>
