@@ -1,5 +1,7 @@
 package com.home.pwApp.dao.impl;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,8 +43,8 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<BoardDTO> listByUserId(String userId) {
 		// TODO Auto-generated method stub
-
-		return sqlSession.selectList("boardListByUserId",userId);
+		ArrayList<BoardDTO> list =(ArrayList) sqlSession.selectList("boardListByUserId",userId); 
+		return list;
 	}
 
 	@Override
@@ -55,9 +57,11 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public BoardDTO selectOne(int id) {
+	public Map<String, Object>  selectBoard(String userId, int boardId) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("boardSelectOne", id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("boardId", boardId);
+		return  sqlSession.selectOne("boardSelectOne",map);
 	}
-
 }

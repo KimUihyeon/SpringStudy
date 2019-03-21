@@ -1,6 +1,7 @@
 package com.home.pwApp.service.Impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -47,9 +48,9 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public BoardDTO selectOne(int id) {
+	public Map<String, Object>  selectBoard(String userId, int boardId) {
 		// TODO Auto-generated method stub
-		return dao.selectOne(id);
+		return  dao.selectBoard(userId,boardId);
 	}
 
 }

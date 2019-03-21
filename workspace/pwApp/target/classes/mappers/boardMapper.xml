@@ -6,12 +6,18 @@
   <mapper namespace="com.home.pwApp.dao.BoardDAO">
   
   	<resultMap type="com.home.pwApp.dto.DirectoryDTO" id="directoryDTO">
+  		<result column="icon" property="icon"/>
   		<result column="title2" property="title"/>
-  		<result column="description2" property="description"/>
+  		<result column="description" property="description"/>
   	</resultMap>
   
   	<resultMap type="com.home.pwApp.dto.BoardDTO" id="boardDTO">
-  		<id column="id" property="id"/>
+  		<result column="id"  property="id"/>
+  		<result column="context" property="context"/>
+  		<result column="contextId"  property="contextId"/>
+  		<result column="contextPw"  property="contextPw"/>
+  		<result column="etc"  property="etc"/>
+  		<result column="groupId"  property="groupId"/>
   		<collection property="directoryDTO" resultMap="directoryDTO">
   		</collection>
   	</resultMap>
@@ -23,7 +29,8 @@
 		VALUES (#{title}, #{context}, #{contextId}, #{contextPw}, #{etc}, #{groupId});
   	</insert>
   	
-  	<select id="boardListByUserId" resultType="boardDTO">
+  	
+  	<select id="boardSelectOne" resultType="java.util.HashMap">
   		SELECT 
   			b.id as `id`,
   			context,
@@ -31,8 +38,31 @@
   			contextPw, 
   			etc, 
   			groupId,
-  			g.title as `title2`,
-  			g.description as `description2`
+  			g.icon,
+  			g.title,
+  			g.description 
+  		FROM 
+  			app_board as b
+  		INNER JOIN 
+  			app_directory as g
+  		ON 
+  			b.groupId = g.id
+  		WHERE
+  			g.userId = #{userId}
+  			AND	b.id = #{boardId} 
+  	</select>
+  	
+  	<select id="boardListByUserId" resultType="java.util.HashMap">
+  		SELECT 
+  			b.id as `id`,
+  			context,
+  			contextId, 
+  			contextPw, 
+  			etc, 
+  			groupId,
+  			g.icon,
+  			g.title,
+  			g.description 
   		FROM 
   			app_board as b
   		INNER JOIN 
@@ -42,21 +72,4 @@
   		WHERE
   			g.userId = #{userId}
   	</select>
-  	
-  	
-  	<select id="boardSelectOne" resultType="boardDTO">
-  		SELECT 
-  			id,
-  			context,
-  			contextId,
-  			contextPw,
-  			etc,
-  			groupId
-  		FROM 
-  			app_board
-  		WHERE
-  			id = #{id}
-  	</select>
-  	
-  	
   </mapper>

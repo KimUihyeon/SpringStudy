@@ -163,6 +163,14 @@
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.9.6</version>
 		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+
+
+
 		
 		<!-- Spring3 에서 @Configuration을 쓰려면  해당 라이브러리 필요 -->
 		<dependency>
