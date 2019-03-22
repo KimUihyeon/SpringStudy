@@ -19,21 +19,29 @@
         <section>
             <ul class="list-group content-list-box">
             	<c:forEach var="board" items="${boards}">
-	                <li class="list-group-item">
-	                	<a href="../main/detail?id=${board.id}">
-		                    <div>
-		                        <div>
-		                            <img class="group-icon" href="../${board.icon}">
+	                <li class="list-group-item" style="border-color: ${board.color}">
+	                    <div>
+	                        <div>
+                				<a href="../main/detail?id=${board.id}">
+		                            <img class="group-icon" src`="../${board.icon}">
 		                            <strong>${board.title}</strong>
 		                            <strong>${board.description}</strong>
-		                        </div>
-		                        <hr>
-		                        <div style="margin-left: 60px">
+	                            </a>
+	                        </div>
+	                        <div class="detailControlBttonBox smallIcon">
+	                        	<a href="../main/modify?id=${board.id}">
+	                        		<i class="fas fa-edit"></i>
+	                        	</a>
+	                            <i class="fas fa-trash-alt"></i>
+	                        </div>
+	                        <hr>            
+               				<a href="../main/detail?id=${board.id}">
+		                        <div style="margin-left: 60px">	            
 		                            <i>${board.context}</i>
 		                            <i>${board.id}</i>
 		                        </div>
-		                    </div>
-	                	</a>
+                            </a>
+	                    </div>
 	                </li>
             	</c:forEach>
             </ul>

@@ -7,6 +7,24 @@ body{
     background: #88a88a;
 }
 
+.detailControlBttonBox{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 15px;
+    font-size: 20px;
+}
+.smallIcon{
+    font-size: 15px !important;
+    z-index: 99;
+}
+.smallIcon{
+    font-size: 15px !important;
+}
+.detailControlBttonBox i{
+	margin-right: 3px;
+}
+
 
 /* Content List */
 /* Content List */

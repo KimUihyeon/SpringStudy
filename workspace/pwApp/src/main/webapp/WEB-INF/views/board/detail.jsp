@@ -22,6 +22,12 @@
                             <img class="group-icon" src="../${board.icon}">
                             <strong>${board.title}</strong>
                         </div>
+                        <div class="detailControlBttonBox">
+                        	<a href="../main/modify?id=${board.id}">
+                        		<i class="fas fa-edit"></i>
+                        	</a>
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
                         <hr>
                         <div style="margin-left: 60px">
                             <i>${board.description}</i>
@@ -45,7 +51,11 @@
     
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	<script>
+		var color = '${board.color}';
         $(function(){
+        	/* Init */
+        	setColor(color);
+        	
             $('.content-item').each(function(index){
                 let _idx = index;
                 $(this).find('button').on('click',function(){
@@ -57,8 +67,7 @@
                     if(_IsDataChange == 'false'){
                     	var ajaxData = getBoardInfo();
                     	var data = "";
-                		console.log(ajaxData);
-                    	
+
                     	if(_buttonId== 'id'){
                     		data = ajaxData.contextId;
                     	}

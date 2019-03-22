@@ -11,16 +11,16 @@
 	        <div class="bg-dark p-4">
 	            <ul class="list-group">
 	                <li class="list-group-item">
-	                    <a class="a-box" href="../main/list">리스트로 보기</a>
+	                    <a class="a-box" href="../main/list">전체 보기</a>
 	                </li>
 	                <li class="list-group-item">
-	                    <a class="a-box" href="../directory/list">그룹별로 보기</a>
+	                    <a class="a-box" href="../directory/list">분류별로 보기</a>
 	                </li>
 	                <li class="list-group-item">
-	                    <a class="a-box" href="../main/insert">추가</a>
+	                    <a class="a-box" href="../main/insert">작성</a>
 	                </li>
 	                <li class="list-group-item">
-	                    <a class="a-box" href="../directory/insert">디렉토리추가</a>
+	                    <a class="a-box" href="../directory/insert">분류 추가</a>
 	                </li>
 	                <li class="list-group-item">
 	                    <a class="a-box" href="#">관리</a>

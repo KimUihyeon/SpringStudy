@@ -30,7 +30,7 @@ public class BoardDAOImpl implements BoardDAO {
 	public void modify(BoardDTO dto) {
 		// TODO Auto-generated method stub
 
-		sqlSession.update("modify",dto);
+		sqlSession.update("boradModify",dto);
 	}
 
 	@Override
@@ -41,9 +41,12 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardDTO> listByUserId(String userId) {
+	public List<BoardDTO> listByUserId(String userId, String type) {
 		// TODO Auto-generated method stub
-		ArrayList<BoardDTO> list =(ArrayList) sqlSession.selectList("boardListByUserId",userId); 
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("type", type);
+		ArrayList<BoardDTO> list =(ArrayList) sqlSession.selectList("boardListByUserId",map); 
 		return list;
 	}
 

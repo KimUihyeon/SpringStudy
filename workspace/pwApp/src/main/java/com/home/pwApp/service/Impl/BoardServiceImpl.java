@@ -26,7 +26,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void modify(BoardDTO dto) {
 		// TODO Auto-generated method stub
-		
+		dao.modify(dto);		
 	}
 
 	@Override
@@ -36,9 +36,9 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardDTO> listByUserId(String userId) {
+	public List<BoardDTO> listByUserId(String userId, String type) {
 		// TODO Auto-generated method stub
-		return dao.listByUserId(userId);
+		return dao.listByUserId(userId,type);
 	}
 
 	@Override

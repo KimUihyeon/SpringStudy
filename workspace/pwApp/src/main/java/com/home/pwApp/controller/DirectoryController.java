@@ -68,7 +68,7 @@ public class DirectoryController {
 	@RequestMapping(value = "/insert", method= RequestMethod.GET)
 	public String insert() {
 		
-		return "/directory/modify";
+		return "/directory/insert";
 	}
 	
 	/**
@@ -118,8 +118,9 @@ public class DirectoryController {
 	 * 수정하기 Form Data 처리 로직
 	 */
 	@RequestMapping(value = "/modify" , method= RequestMethod.POST)
-	public void modify(String data) {
-		
+	public String modify(String data) {
+
+		return "redirect:/main/list";
 	}
 	
 	

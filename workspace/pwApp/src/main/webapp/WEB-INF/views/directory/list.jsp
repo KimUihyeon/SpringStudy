@@ -19,16 +19,21 @@
             	
             	<c:forEach var="directory" items="${directories}">
             	
-            	<a href="../main/list?type=${directory.id}">
 	                <li class="list-group-item" style="border-color: ${directory.color}">
-	                    <div>
-	                        <div>
-	                            <img class="group-icon" src="../${directory.icon}">
-	                            <strong>${directory.title}</strong>
-	                        </div>
-	                    </div>
+		                    <div>
+		                        <div>
+            						<a href="../main/list?type=${directory.id}">
+		                            <img class="group-icon" src="../${directory.icon}">
+		                            <strong>${directory.title}</strong>
+		                            </a>
+		                        </div>
+		                        <div class="detailControlBttonBox smallIcon">
+		                        	<a href="../directory/modify?id=${directory.id}">		                        		<i class="fas fa-edit"></i>
+		                        	</a>
+		                            <i class="fas fa-trash-alt" id="deleteDirectory"></i>
+		                        </div>
+		                    </div>
 	                </li>
-            	</a>
             	
             	</c:forEach>
             </ul>
@@ -38,6 +43,11 @@
     
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	<script>
+		$(function(){
+			$('#deleteDirectory').on('click',function(){
+				alert('삭제로직');
+			});
+		})
     </script>
 </body>
 </html>
