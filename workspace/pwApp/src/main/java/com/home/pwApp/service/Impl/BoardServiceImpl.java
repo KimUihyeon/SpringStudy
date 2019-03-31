@@ -32,7 +32,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void delete(BoardDTO dto) {
 		// TODO Auto-generated method stub
-		
+		dao.delete(dto);
 	}
 
 	@Override
@@ -57,6 +57,12 @@ public class BoardServiceImpl implements BoardService{
 	public BoardDTO selectOne(int id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void deleteAllByDirectoryId(int directoryId) {
+		// TODO Auto-generated method stub
+		dao.deleteAllByDirectoryId(directoryId);
 	}
 
 }

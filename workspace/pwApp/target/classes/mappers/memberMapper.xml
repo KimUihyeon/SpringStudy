@@ -14,4 +14,17 @@
   		FROM Member
   		where email = 'id'
   	</select>
+  	<select id="memberSelectOne"  resultType="memberDTO">
+  		SELECT 
+  			id,
+  			pw,
+  			name,
+  			userLevel
+  		FROM 
+  			app_member
+  		WHERE
+  			id = #{id}
+  			AND
+  			pw = #{pw}
+  	</select>
   </mapper>

@@ -55,22 +55,14 @@
                 </li>
             </ul>
         </section>
-        
-    
-        <input type="hidden" id="modalBtn" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm"/>
-
-        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-            ...
-            </div>
-        </div>
-        </div>
     </div>
     
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	<script>
         $(function(){
+        	
+        	
+        	
             $('.dropdown-menu > li').on('click',function(){
                 let _$this = $(this);
                 let _val = _$this.html();
@@ -102,6 +94,7 @@
             });
 
             function isValid(v){
+            	 
                 if(v.group == -1){
                     modalPopup('그룹명을 지정해주세요');
                     return false;

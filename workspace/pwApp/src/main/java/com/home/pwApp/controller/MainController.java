@@ -117,15 +117,25 @@ public class MainController {
 
 	/**
 	 * 작성자 || 김의현
-	 * 작업일시|| 19.03.15
+	 * 작업일시|| 19.03.22
 	 * 게시판 삭제하기 처리 로직 
 	 */
-	@RequestMapping(value="/delete", method=RequestMethod.POST)
-	public String delete() {
-		return "";
+	@RequestMapping(value="/delete", method=RequestMethod.POST )
+	public String delete(BoardDTO dto, String type) {
+		boardService.delete(dto);
+		
+		if( type!= null) {
+			return "redirect:/main/list?type="+type;
+		}
+		return "redirect:/main/list";
 	}
 	
 
+	/**
+	 * 작성자 || 김의현
+	 * 작업일시|| 19.03.23
+	 *  
+	 */
 	@RequestMapping(value="/selectOne", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> selectOne(String id) {
 		Map<String, Object>  asdasd =  boardService.selectBoard(userId, Integer.parseInt(id));

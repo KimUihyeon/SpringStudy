@@ -47,7 +47,7 @@ public class DirectoryDAOImpl implements DirectoryDAO {
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		
+		sqlSession.delete("directoryDeleteOne", id);
 	}
 
 

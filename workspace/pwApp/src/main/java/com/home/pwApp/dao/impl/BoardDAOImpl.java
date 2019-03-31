@@ -37,7 +37,7 @@ public class BoardDAOImpl implements BoardDAO {
 	public void delete(BoardDTO dto) {
 		// TODO Auto-generated method stub
 		
-		sqlSession.delete("delete",dto);
+		sqlSession.delete("boradDelete",dto);
 	}
 
 	@Override
@@ -72,5 +72,12 @@ public class BoardDAOImpl implements BoardDAO {
 	public BoardDTO selectOne(int id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void deleteAllByDirectoryId(int directoryId) {
+		// TODO Auto-generated method stub
+
+		sqlSession.delete("deleteAllByDirectoryId",directoryId);
 	}
 }

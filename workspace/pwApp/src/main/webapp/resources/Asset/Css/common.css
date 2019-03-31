@@ -123,8 +123,16 @@ body{
 
 
 /* modal */
+.modal-body{
+	padding: 5px 15px;
+	
+}
 .modal-content{
-    padding: 15px;
+    padding: 5px;
+}
+
+.icon{
+	cursor: pointer;
 }
 
 textarea{
