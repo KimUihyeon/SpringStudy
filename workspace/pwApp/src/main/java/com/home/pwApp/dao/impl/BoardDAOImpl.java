@@ -64,4 +64,10 @@ public class BoardDAOImpl implements BoardDAO {
 		map.put("boardId", boardId);
 		return  sqlSession.selectOne("boardSelectOne",map);
 	}
+
+	@Override
+	public BoardDTO selectOne(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
