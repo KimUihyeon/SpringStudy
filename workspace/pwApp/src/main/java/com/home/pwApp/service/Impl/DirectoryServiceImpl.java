@@ -86,7 +86,7 @@ public class DirectoryServiceImpl implements DirectoryService {
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		
+		directoryDAO.delete(id);
 	}
 
 	@Override

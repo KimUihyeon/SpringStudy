@@ -10,7 +10,7 @@ public class DirectoryDTO {
 	private MemberDTO memberDTO;
 	
 	public String getUserId() {
-		return userId;
+		return userId;  
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;

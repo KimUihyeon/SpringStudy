@@ -30,20 +30,23 @@ public class BoardDAOImpl implements BoardDAO {
 	public void modify(BoardDTO dto) {
 		// TODO Auto-generated method stub
 
-		sqlSession.update("modify",dto);
+		sqlSession.update("boradModify",dto);
 	}
 
 	@Override
 	public void delete(BoardDTO dto) {
 		// TODO Auto-generated method stub
 		
-		sqlSession.delete("delete",dto);
+		sqlSession.delete("boradDelete",dto);
 	}
 
 	@Override
-	public List<BoardDTO> listByUserId(String userId) {
+	public List<BoardDTO> listByUserId(String userId, String type) {
 		// TODO Auto-generated method stub
-		ArrayList<BoardDTO> list =(ArrayList) sqlSession.selectList("boardListByUserId",userId); 
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("type", type);
+		ArrayList<BoardDTO> list =(ArrayList) sqlSession.selectList("boardListByUserId",map); 
 		return list;
 	}
 
@@ -70,4 +73,14 @@ public class BoardDAOImpl implements BoardDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+<<<<<<< HEAD
+=======
+
+	@Override
+	public void deleteAllByDirectoryId(int directoryId) {
+		// TODO Auto-generated method stub
+
+		sqlSession.delete("deleteAllByDirectoryId",directoryId);
+	}
+>>>>>>> d8a72e8d9528a74e4837d14995e5cca0da2bcb14
 }

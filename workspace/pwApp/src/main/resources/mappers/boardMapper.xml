@@ -29,6 +29,20 @@
 		VALUES (#{title}, #{context}, #{contextId}, #{contextPw}, #{etc}, #{groupId});
   	</insert>
   	
+  	<update id="boradModify">
+  		UPDATE 
+  			app_board
+  		SET
+  			title = #{title}, 
+  			context = #{context}, 
+  			contextId = #{contextId}, 
+  			contextPw = #{contextPw}, 
+  			etc = #{etc}, 
+  			groupId = #{groupId}
+  		WHERE
+  			id = #{id}
+  	</update>
+  	
   	
   	<select id="boardSelectOne" resultType="java.util.HashMap">
   		SELECT 
@@ -40,7 +54,8 @@
   			groupId,
   			g.icon,
   			g.title,
-  			g.description 
+  			g.description ,
+  			g.color
   		FROM 
   			app_board as b
   		INNER JOIN 
@@ -62,7 +77,8 @@
   			groupId,
   			g.icon,
   			g.title,
-  			g.description 
+  			g.description,
+  			g.color
   		FROM 
   			app_board as b
   		INNER JOIN 
@@ -71,5 +87,22 @@
   			b.groupId = g.id
   		WHERE
   			g.userId = #{userId}
+  			<if test="type != null">
+  			AND groupId = #{type}
+  			</if>
   	</select>
+  	
+  	<delete id="boradDelete">
+  		DELETE FROM
+  			app_board
+  		WHERE
+  			id = #{id}
+  	</delete>
+  	
+  	<delete id="deleteAllByDirectoryId">
+  		DELETE FROM
+  			app_board
+  		WHERE
+  			groupId = #{directoryId}
+  	</delete>
   </mapper>

@@ -13,12 +13,12 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
     <div id="wrap">
 		<%@ include file="/WEB-INF/views/common/menu.jsp" %>
+
         <section class="">
             <ul class="list-group content-list-box">
                 <li class="list-group-item">
                     <div>
-                        <form id="formTag" action="../main/modify" method="POST" >
-                        	<input type="hidden" value="${board.id}" name="id"/>
+                        <form id="formTag" action="../main/insert" method="POST" >
                             <div>
                                 <img class="group-icon" id="iconImg">
                                 <div class="btn-group">
@@ -34,7 +34,7 @@
                             </div>
                             <hr>
                             <div style="margin-left: 60px">
-                                <textarea type="text" class="form-control" placeholder="description" name='context' id='description' aria-describedby="basic-addon2">${board.context}</textarea>
+                                <textarea type="text" class="form-control" placeholder="description" name='context' id='description' aria-describedby="basic-addon2"></textarea>
                             </div>
                             <div class="content-box">
                                 <div class="content-item">
@@ -55,38 +55,12 @@
                 </li>
             </ul>
         </section>
-        
-    
-        <input type="hidden" id="modalBtn" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm"/>
-
-        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-            ...
-            </div>
-        </div>
-        </div>
     </div>
     
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	<script>
-		var directoryId = '${board.groupId}';
-		
         $(function(){
         	
-        	function restoreComboBox(){
-        		if(directoryId !=''){
-	       			$('.dropdown-menu > li').each(function(index){
-	       				let _$this = $(this);
-	  	                let _key = _$this.attr('data-key');
-	  	                console.log(directoryId + " // " + _key);
-	  	                if(_key==directoryId){
-	  	                	_$this.trigger('click');
-	  	                	return;
-	  	                }
-	       			});
-        		}
-        	}
         	
         	
             $('.dropdown-menu > li').on('click',function(){
@@ -120,6 +94,7 @@
             });
 
             function isValid(v){
+            	 
                 if(v.group == -1){
                     modalPopup('그룹명을 지정해주세요');
                     return false;
@@ -134,11 +109,6 @@
                 }
                 return true;
             }
-            
-            $(document).ready(function(){
-
-            	restoreComboBox();
-            })
         })
     </script>
 </body>

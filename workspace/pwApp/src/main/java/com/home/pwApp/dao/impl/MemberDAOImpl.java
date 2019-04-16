@@ -1,5 +1,7 @@
 package com.home.pwApp.dao.impl;
 
+import java.util.HashMap;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -15,12 +17,12 @@ public class MemberDAOImpl implements MemberDAO {
 	private SqlSession sqlSession;
 
 	@Override
-	public MemberDTO getMemberById(String id) {
+	public MemberDTO getMemberById(String id,String pw) {
 		// TODO Auto-generated method stub
-		
- 		MemberDTO dto = sqlSession.selectOne("AllList");
-		System.out.println(dto.getId());
-		return dto;
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("pw", pw);
+		return sqlSession.selectOne("memberSelectOne", map);
 	}
 	
 }

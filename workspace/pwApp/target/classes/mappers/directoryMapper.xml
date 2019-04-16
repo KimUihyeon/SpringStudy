@@ -23,4 +23,11 @@
 			userId = #{userId};
   	</select>
   	
+  	<delete id="directoryDeleteOne">
+  		DELETE FROM
+  			app_directory
+  		WHERE 
+  			id = #{id};
+  	</delete>
+  	
   </mapper>

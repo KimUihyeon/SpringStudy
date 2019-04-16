@@ -26,19 +26,19 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void modify(BoardDTO dto) {
 		// TODO Auto-generated method stub
-		
+		dao.modify(dto);		
 	}
 
 	@Override
 	public void delete(BoardDTO dto) {
 		// TODO Auto-generated method stub
-		
+		dao.delete(dto);
 	}
 
 	@Override
-	public List<BoardDTO> listByUserId(String userId) {
+	public List<BoardDTO> listByUserId(String userId, String type) {
 		// TODO Auto-generated method stub
-		return dao.listByUserId(userId);
+		return dao.listByUserId(userId,type);
 	}
 
 	@Override
@@ -59,4 +59,13 @@ public class BoardServiceImpl implements BoardService{
 		return null;
 	}
 
+<<<<<<< HEAD
+=======
+	@Override
+	public void deleteAllByDirectoryId(int directoryId) {
+		// TODO Auto-generated method stub
+		dao.deleteAllByDirectoryId(directoryId);
+	}
+
+>>>>>>> d8a72e8d9528a74e4837d14995e5cca0da2bcb14
 }

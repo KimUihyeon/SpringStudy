@@ -11,8 +11,8 @@ public interface BoardDAO {
 	public void add(BoardDTO dto);
 	public void modify(BoardDTO dto);
 	public void delete(BoardDTO dto);
-	public List<BoardDTO> listByUserId(String userId);
+	public List<BoardDTO> listByUserId(String userId, String type);
 	public Map<String, Object>  selectBoard(String userId, int boardId);
 	public List<BoardDTO> listGroupByDirectory(int directoryId, String userId);
-	
+	public void deleteAllByDirectoryId(int directoryId);
 }

@@ -19,21 +19,29 @@
         <section>
             <ul class="list-group content-list-box">
             	<c:forEach var="board" items="${boards}">
-	                <li class="list-group-item">
-	                	<a href="../main/detail?id=${board.id}">
-		                    <div>
-		                        <div>
-		                            <img class="group-icon" href="../${board.icon}">
+	                <li class="list-group-item" style="border-color: ${board.color}">
+	                    <div>
+	                        <div>
+                				<a href="../main/detail?id=${board.id}">
+		                            <img class="group-icon" src`="../${board.icon}">
 		                            <strong>${board.title}</strong>
 		                            <strong>${board.description}</strong>
-		                        </div>
-		                        <hr>
-		                        <div style="margin-left: 60px">
+	                            </a>
+	                        </div>
+	                        <div class="detailControlBttonBox smallIcon">
+	                        	<a href="../main/modify?id=${board.id}">
+	                        		<i class="fas fa-edit"></i>
+	                        	</a>
+                            	<i class="fas fa-trash-alt deleteIcon icon" data-key="${board.id}" data-title="${board.title}" ></i>
+	                        </div>
+	                        <hr>            
+               				<a href="../main/detail?id=${board.id}">
+		                        <div style="margin-left: 60px">	            
 		                            <i>${board.context}</i>
 		                            <i>${board.id}</i>
 		                        </div>
-		                    </div>
-	                	</a>
+                            </a>
+	                    </div>
 	                </li>
             	</c:forEach>
             </ul>
@@ -43,6 +51,42 @@
     
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
     <script>
+		$(function(){
+			let key = -1;
+
+			/* 팝업만들기 */
+			/* 팝업만들기 */
+        	var modalSetting = new modalSet();
+        	modalSetting.title = "삭제";
+        	modalSetting.context = "내용";
+    		modalSetting.okFunction = function(){ deleteService() };
+    		modalSetting.init();
+
+        	function deleteService(){
+        		var form = createForm('POST','../main/delete');
+        		var input = createInputData('id',key);
+        		form.appendChild(input);
+        		$(document.body).append(form);
+        		form.submit();
+        	}
+        	
+        	
+
+			/* 팝업만들기 */
+			/* 팝업만들기 */
+        	$('.deleteIcon').on('click',function(){
+        		let _$this = $(this);
+        		
+        		key = _$this.attr('data-key');
+        		let title = _$this.attr('data-title');
+        		
+        		modalSetting.context = "["+ title + "] 게시물을 삭제하시겠습니까?";
+        		modalSetting.popup();        		
+        	});
+        	
+        	
+        	
+		})
     </script>
 </body>
 </html>

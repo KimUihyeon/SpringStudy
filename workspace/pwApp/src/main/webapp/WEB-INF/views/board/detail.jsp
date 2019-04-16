@@ -19,8 +19,14 @@
                     <div>
                     	<input type="hidden" id="boardId" value="${board.id}" >
                         <div>
-                            <img class="group-icon" href="../${board.icon}">
+                            <img class="group-icon" src="../${board.icon}">
                             <strong>${board.title}</strong>
+                        </div>
+                        <div class="detailControlBttonBox">
+                        	<a href="../main/modify?id=${board.id}">
+                        		<i class="fas fa-edit"></i>
+                        	</a>
+                            <i class="fas fa-trash-alt deleteIcon" data-key="${board.id}" data-title="${board.title}"></i>
                         </div>
                         <hr>
                         <div style="margin-left: 60px">
@@ -45,7 +51,43 @@
     
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	<script>
+		var color = '${board.color}';
         $(function(){
+			let key = -1;
+
+			/* 팝업만들기 */
+			/* 팝업만들기 */
+        	var modalSetting = new modalSet();
+        	modalSetting.title = "삭제";
+        	modalSetting.context = "내용";
+    		modalSetting.okFunction = function(){ deleteService() };
+    		modalSetting.init();
+
+        	function deleteService(){
+        		var form = createForm('POST','../main/delete');
+        		var input = createInputData('id',key);
+        		form.appendChild(input);
+        		$(document.body).append(form);
+        		form.submit();
+        	}
+        	
+        	
+
+			/* 팝업만들기 */
+			/* 팝업만들기 */
+        	$('.deleteIcon').on('click',function(){
+        		let _$this = $(this);
+        		
+        		key = _$this.attr('data-key');
+        		let title = _$this.attr('data-title');
+        		
+        		modalSetting.context = "["+ title + "] 게시물을 삭제하시겠습니까?";
+        		modalSetting.popup();        		
+        	});
+			
+
+        	/* 버튼이벤트 */
+        	/* 버튼이벤트 */
             $('.content-item').each(function(index){
                 let _idx = index;
                 $(this).find('button').on('click',function(){
@@ -57,8 +99,7 @@
                     if(_IsDataChange == 'false'){
                     	var ajaxData = getBoardInfo();
                     	var data = "";
-                		console.log(ajaxData);
-                    	
+
                     	if(_buttonId== 'id'){
                     		data = ajaxData.contextId;
                     	}
@@ -79,7 +120,17 @@
                 });
             });
 
-            function securityDataTagFactory(txt){
+
+            /* getData */
+            /* getData */
+            function getBoardInfo(){ // Ajax 데이터
+            	let data = { 'id' : parseInt($('#boardId').val())};
+            	let url = '../main/selectOne';            	
+            	let ajaxData = ajaxPostCall(data,url);
+            	return ajaxData; 
+            }
+            
+            function securityDataTagFactory(txt){ // 태그 랩핑
                 let tag = "";
                 for(var i=0; i<txt.length;i++){
                     var chart = txt[i];
@@ -99,31 +150,11 @@
                 return dataWrappingHtml;
             }
 
-            
-            function getBoardInfo(){
-            	let data = { 'id' : parseInt($('#boardId').val())};
-            	let url = '../main/selectOne';            	
-            	let ajaxData = ajaxPostCall(data,url);
-            	return ajaxData; 
-            }
-            
-            function ajaxPostCall(data , url){
-            	var ajaxReturnData = {};
-            	$.ajax({
-            		method: 'POST',
-            		url : url,
-            		data : data,
-                    async   : false,
-                    success:function(data){
-                    	ajaxReturnData = data;
-                    },
-                    error: function (error) {
-                    	ajaxReturnData  = error;
-                    }
-                    
-            	});
-            	return ajaxReturnData;
-            }
+
+
+        	/* Init */
+        	/* Init */
+        	setColor(color);
         });
     </script>
 </body>
